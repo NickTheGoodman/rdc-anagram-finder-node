@@ -1,0 +1,19 @@
+{
+  "name": "rdc-anagram-finder-node",
+  "version": "1.0.0",
+  "description": "Anagram Finder Programming Task for Realtor.com Interview",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickTheGoodman/rdc-anagram-finder-node.git"
+  },
+  "author": "Nick Goodman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickTheGoodman/rdc-anagram-finder-node/issues"
+  },
+  "homepage": "https://github.com/NickTheGoodman/rdc-anagram-finder-node#readme"
+}
