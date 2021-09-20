@@ -42,12 +42,11 @@ export class BruteForceAnagramSolver {
         };
         ui.question('Enter a word. > ', getInput);
 
-        ui
-        .on('find_anagram', (input: string) => this._findAnagram(input))
-        .on("close", () => {
+        ui.on('find_anagram', (input: string) => this._findAnagrams(input))
+          .on("close", () => {
             console.log("Exiting.");
             process.exit(0);
-        });
+          });
     }
 
     private _readDictionaryFile(filename: string) {
@@ -62,10 +61,70 @@ export class BruteForceAnagramSolver {
     }
 
     private _processDictionary(rawDictionaryContents: string) {
-        return rawDictionaryContents.split("\n", 10);
+        return rawDictionaryContents.split("\n");
     }
 
-    private _findAnagram(word: string) {
+    public _findAnagrams(word: string) {
+        const findStart = Date.now();
 
+        const possibleAnagrams = this._generatePossibleAnagrams(word);
+        console.log(`DEBUG: possibleAnagrams:`);
+        console.log(possibleAnagrams);
+        const foundAnagrams = this._findAnagramsInDictionary(possibleAnagrams);
+
+        const findEnd = Date.now();
+        const findDuration = findEnd - findStart;
+
+        const numAnagramsOutput = foundAnagrams.length === 0 ? "No" : foundAnagrams.length;
+        console.log(`${numAnagramsOutput} Anagrams found for ${word} in ${findDuration}ms`);
+        console.log(foundAnagrams.toString());
+    }
+
+    private _generatePossibleAnagrams(word: string) {
+        const loadStart = Date.now();
+
+        const possibleAnagrams: string[] = [];
+        if (word.length === 1) {
+            possibleAnagrams.push(word);
+        }
+        const tupleStack: [string, string][] = [];
+        tupleStack.push(["", word]);
+
+        while(tupleStack.length > 0) {
+            const tuple = tupleStack.pop();
+            const prevChars = tuple[0];
+            const curChars = tuple[1];
+
+            for (let i = curChars.length - 1; i >= 0; i--) {
+                const leftChars = curChars.slice(0, i);
+                const middleChar = curChars[i];
+                const rightChars = curChars.slice(i+1, curChars.length);
+
+                const charsSoFar = prevChars + middleChar;
+                const nextChars = leftChars + rightChars;
+                if (nextChars.length === 1) {
+                    possibleAnagrams.push(charsSoFar + nextChars);
+                } else {
+                    tupleStack.push([charsSoFar, nextChars]);
+                }
+            }
+        }
+
+        const loadEnd = Date.now();
+        const loadDuration = loadEnd - loadStart;
+        console.log(`Anagram possibilities generated in ${loadDuration} ms`);
+        return possibleAnagrams;
+    }
+
+    private _findAnagramsInDictionary(possibleAnagrams: string[]) {
+        const foundAnagrams: string[] = [];
+        possibleAnagrams.map((possibleAnagram) => {
+            const anagramFound = this._wordList.indexOf(possibleAnagram) != -1;
+            if (anagramFound) {
+                foundAnagrams.push(possibleAnagram);
+            }
+        });
+
+        return foundAnagrams;
     }
 }
