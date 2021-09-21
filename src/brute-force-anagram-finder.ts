@@ -1,11 +1,18 @@
 import readline from "readline";
 import fs from "fs";
 
-export class BruteForceAnagramSolver {
-    private _wordList: string[];
+// Map lowercase words to equivalent words of various cases
+//   Key: Lowercase word
+//   Value: An array of words with the same letters as the key in any combination of uppercase or lowercase
+interface UppercaseToOriginalWordsMap {
+    [lowercaseWord: string]: string[]
+}
+
+export class BruteForceAnagramFinder {
+    private _wordList: UppercaseToOriginalWordsMap;
 
     constructor() {
-        this._wordList = [];
+        this._wordList = {};
     }
 
     public loadDictionary(filename: string) {
@@ -44,7 +51,7 @@ export class BruteForceAnagramSolver {
         ui.question('Enter a word. > ', getInput);
 
         ui.on('find_anagram', (input: string) => {
-            this._findAnagrams(input);
+            console.log(this._findAnagrams(input));
         }).on("close", () => {
             console.log("Exiting.");
             process.exit(0);
@@ -63,38 +70,48 @@ export class BruteForceAnagramSolver {
     }
 
     private _processDictionary(rawDictionaryContents: string) {
-        return rawDictionaryContents.split("\n");
+        const dictionaryMap: UppercaseToOriginalWordsMap = {};
+
+        const originalDictionary = rawDictionaryContents.split("\n");
+        originalDictionary.map((word) => {
+            const uppercaseWord = word.toUpperCase();
+            if (! dictionaryMap[uppercaseWord]) {
+                dictionaryMap[uppercaseWord] = [];
+            }
+            dictionaryMap[uppercaseWord].push(word);
+        });
+
+        return dictionaryMap;
     }
 
     public _findAnagrams(word: string) {
         const findStart = Date.now();
 
-        const possibleAnagrams = this._generatePossibleAnagrams(word);
-        // console.log(`DEBUG: ${possibleAnagrams.size} possible anagrams found`);
+        const possibleAnagrams = this._generatePossibleAnagramsAsUppercase(word);
+        // console.log(`DEBUG: ${possibleAnagrams.size} possible (case-insensitive) anagrams found`);
         const foundAnagrams = this._findAnagramsInDictionary(possibleAnagrams);
         foundAnagrams.sort();
 
         const findEnd = Date.now();
         const findDuration = findEnd - findStart;
-
         const numAnagrams = foundAnagrams.length;
-        const output = numAnagrams === 0 ?
-            `No anagrams found for ${word} in ${findDuration} ms` :
+        return numAnagrams === 0 ?
+            `No anagrams found for ${word} in ${findDuration} ms\n` :
             numAnagrams === 1 ?
             `${numAnagrams} anagram found for ${word} in ${findDuration} ms\n${foundAnagrams.toString()}\n` :
             `${numAnagrams} anagrams found for ${word} in ${findDuration} ms\n${foundAnagrams.toString()}\n`;
-        console.log(output);
     }
 
-    private _generatePossibleAnagrams(word: string) {
-        // const loadStart = Date.now();
-
-        const possibleAnagrams = new Set<string>();
-        if (word.length === 1) {
-            possibleAnagrams.add(word);
-        }
+    private _generatePossibleAnagramsAsUppercase(word: string) {
         const tupleStack: [string, string][] = [];
-        tupleStack.push(["", word]);
+        const possibleAnagrams = new Set<string>();
+        // Unify the case of all letters in the original word to support case-insensitive searching later
+        const uppercaseWord = word.toUpperCase();
+
+        if (uppercaseWord.length === 1) {
+            possibleAnagrams.add(uppercaseWord);
+        }
+        tupleStack.push(["", uppercaseWord]);
 
         while(tupleStack.length > 0) {
             const tuple = tupleStack.pop();
@@ -116,18 +133,16 @@ export class BruteForceAnagramSolver {
             }
         }
 
-        // const loadEnd = Date.now();
-        // const loadDuration = loadEnd - loadStart;
-        // console.log(`DEBUG: Anagram possibilities generated in ${loadDuration} ms`);
         return possibleAnagrams;
     }
 
     private _findAnagramsInDictionary(possibleAnagrams: Set<string>) {
-        const foundAnagrams: string[] = [];
+        let foundAnagrams: string[] = [];
 
         possibleAnagrams.forEach((possibleAnagram) => {
-            if (this._wordList.indexOf(possibleAnagram) != -1) {
-                foundAnagrams.push(possibleAnagram);
+            const originalWords = this._wordList[possibleAnagram];
+            if (originalWords) {
+                foundAnagrams = foundAnagrams.concat(originalWords);
             }
         });
 

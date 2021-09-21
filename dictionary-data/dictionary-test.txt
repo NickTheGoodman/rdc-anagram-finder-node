@@ -1,5 +1,9 @@
 a
+Aa
 aa
+aA
+Constructor
+constructor
 opts
 pots
 stop

@@ -4,9 +4,9 @@
   "description": "Anagram Finder Programming Task for Realtor.com Interview",
   "main": "dist/src/app.js",
   "scripts": {
-    "transpile": "tsc",
+    "build": "tsc",
     "start": "node dist/src/app.js",
-    "restart": "npm run transpile && npm start",
+    "restart": "npm run build && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
