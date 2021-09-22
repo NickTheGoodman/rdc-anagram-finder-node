@@ -1,6 +1,6 @@
 {
   "name": "rdc-anagram-finder-node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Anagram Finder Programming Task for Realtor.com Interview",
   "main": "dist/src/app.js",
   "scripts": {

@@ -20,6 +20,9 @@ It was developed in Windows Subsystem for Linux using an Ubuntu 20.04 LTS image.
     - Switch to using an index signature for the dictionary data structure,
       mapping the UPPERCASE version of a word to a list of all its case-varying forms,
       to make the anagram search case-insensitive.
+- Day 4 [6 hrs]
+    - Finish planning for optimized algorithm by working through examples and writing pseudo-code on paper
+    - Implement the initial version of OptimizedAnagramFinder using the LetterMap data structure
   
 ## Notes and Assumptions About Anagrams
 - The anagram solver will search for anagrams in a case-insensitive manner.

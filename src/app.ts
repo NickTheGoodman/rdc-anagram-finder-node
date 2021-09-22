@@ -1,6 +1,6 @@
-import {BruteForceAnagramFinder} from "./brute-force-anagram-finder";
+import {OptimizedAnagramFinder} from "./optimized-anagram-finder";
 
-console.log("Welcome to the Anagram Finder v1: Brute Force");
+console.log("Welcome to the Anagram Finder v1.1: Optimized");
 console.log("---------------------------------------------");
 
 if (! process.argv[2]) {
@@ -9,6 +9,7 @@ if (! process.argv[2]) {
 }
 const filename = process.argv[2];
 
-const finder = new BruteForceAnagramFinder();
+// const finder = new BruteForceAnagramFinder();
+const finder = new OptimizedAnagramFinder();
 finder.loadDictionary(filename);
 finder.processInput();
