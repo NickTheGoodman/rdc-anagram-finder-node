@@ -2727,7 +2727,7 @@ adneural
 adnex
 adnexal
 adnexed
-adnexitis
+adnExitis
 adnexopexy
 adnominal
 adnominally
@@ -5087,8 +5087,8 @@ alexipharmic
 alexipharmical
 alexipyretic
 Alexis
-alexiteric
-alexiterical
+alExiteric
+alExiterical
 Alexius
 aleyard
 Aleyrodes
@@ -8931,7 +8931,7 @@ annexationist
 annexer
 annexion
 annexionist
-annexitis
+annExitis
 annexive
 annexment
 annexure
@@ -40376,7 +40376,7 @@ complexionally
 complexioned
 complexionist
 complexionless
-complexity
+complExity
 complexively
 complexly
 complexness
@@ -41486,7 +41486,7 @@ conner
 connex
 connexion
 connexionalism
-connexity
+connExity
 connexive
 connexivum
 connexus
@@ -42467,7 +42467,7 @@ convex
 convexed
 convexedly
 convexedness
-convexity
+convExity
 convexly
 convexness
 convey
@@ -58559,7 +58559,7 @@ duplation
 duple
 duplet
 duplex
-duplexity
+duplExity
 duplicability
 duplicable
 duplicand
@@ -64910,7 +64910,7 @@ essentially
 essentialness
 essenwood
 Essex
-essexite
+essExite
 Essie
 essling
 essoin
@@ -66602,10 +66602,10 @@ exister
 existibility
 existible
 existlessness
-exit
-exite
-exition
-exitus
+Exit
+Exite
+Exition
+Exitus
 exlex
 exmeridian
 Exmoor
@@ -85564,7 +85564,7 @@ hexine
 hexiological
 hexiology
 hexis
-hexitol
+hExitol
 hexoctahedral
 hexoctahedron
 hexode
@@ -96020,7 +96020,7 @@ intercompany
 intercomparable
 intercompare
 intercomparison
-intercomplexity
+intercomplExity
 intercomplimentary
 interconal
 interconciliary
@@ -115366,8 +115366,8 @@ mewler
 Mexica
 Mexican
 Mexicanize
-Mexitl
-Mexitli
+MExitl
+MExitli
 meyerhofferite
 mezcal
 Mezentian
@@ -134488,7 +134488,7 @@ overcomplacent
 overcomplacently
 overcomplete
 overcomplex
-overcomplexity
+overcomplExity
 overcompliant
 overcompound
 overconcentrate
@@ -137666,7 +137666,7 @@ palliness
 Palliobranchiata
 palliobranchiate
 palliocardiac
-pallioessexite
+pallioessExite
 pallion
 palliopedal
 palliostratus
@@ -143251,7 +143251,7 @@ perplexedness
 perplexer
 perplexing
 perplexingly
-perplexity
+perplExity
 perplexment
 perplication
 perquadrat
@@ -169177,8 +169177,8 @@ rhamninase
 rhamninose
 rhamnite
 rhamnitol
-rhamnohexite
-rhamnohexitol
+rhamnohExite
+rhamnohExitol
 rhamnohexose
 rhamnonic
 rhamnose
@@ -179343,7 +179343,7 @@ sexiped
 sexipolar
 sexisyllabic
 sexisyllable
-sexitubercular
+sExitubercular
 sexivalence
 sexivalency
 sexivalent
@@ -181371,7 +181371,7 @@ silesia
 Silesian
 Siletz
 silex
-silexite
+silExite
 silhouette
 silhouettist
 silhouettograph
@@ -181677,7 +181677,7 @@ simpletonish
 simpletonism
 simplex
 simplexed
-simplexity
+simplExity
 simplicident
 Simplicidentata
 simplicidentate
@@ -195681,7 +195681,7 @@ suspire
 suspirious
 Susquehanna
 Sussex
-sussexite
+sussExite
 Sussexman
 sussultatory
 sussultorial
@@ -207640,7 +207640,7 @@ tripletail
 tripletree
 triplewise
 triplex
-triplexity
+triplExity
 triplicate
 triplication
 triplicative
@@ -210237,7 +210237,7 @@ uletic
 Ulex
 ulex
 ulexine
-ulexite
+ulExite
 Ulidia
 Ulidian
 uliginose
