@@ -125,14 +125,17 @@ export class OptimizedAnagramFinder {
 
             for (let i = 0; i < curChars.length; i++) {
                 const leftChars = curChars.slice(0, i);
-                const curChar = curChars[i];
                 const rightChars = curChars.slice(i + 1, curChars.length);
                 const nextChars = leftChars + rightChars;
-                if (curLetterMap[curChar]) {
-                    if (nextChars.length > 0) {
-                        tupleStack.push([prevChars + curChar, nextChars]);
-                    } else if (curLetterMap[curChar].isLastLetter) {
-                        foundAnagrams.add(prevChars + curChar);
+
+                const curCharInBothCases = this._getBothCasesForLetter(curChars[i]);
+                for (const curChar of curCharInBothCases) {
+                    if (curLetterMap[curChar]) {
+                        if (nextChars.length > 0) {
+                            tupleStack.push([prevChars + curChar, nextChars]);
+                        } else if (curLetterMap[curChar].isLastLetter) {
+                            foundAnagrams.add(prevChars + curChar);
+                        }
                     }
                 }
             }
@@ -151,6 +154,14 @@ export class OptimizedAnagramFinder {
         }
         return curLetterMap;
     }
+
+    private _getBothCasesForLetter(letter: string): [string, string] {
+        if (letter.length !== 1) {
+            throw new Error("ERROR: Passed multiple characters to _getBothCasesForLetter()");
+        }
+        return [letter.toLowerCase(), letter.toUpperCase()];
+    }
+
 
     private _printLetterMapRecursively(lettersSoFar: string, letterMap: LetterMap) {
         let words: string[] = [];
@@ -238,6 +249,19 @@ export class OptimizedAnagramFinder {
 
         console.log("printLetterMapIteratively");
         console.log(this._printLetterMapIteratively(letterMap));
+
+        console.log("blah");
+
+        const blah: [string, string] = ["A", 'a'];
+        const [blah0, blah1] = blah;
+        console.log(blah);
+        console.log(blah0);
+        console.log(blah1);
+        for (const letter of blah) {
+            console.log(`letter: ${letter}`);
+        }
+
+
     }
 
 
