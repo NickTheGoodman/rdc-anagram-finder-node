@@ -24,8 +24,9 @@ It was developed in Windows Subsystem for Linux using an Ubuntu 20.04 LTS image.
 - Day 4 [6 hrs]
     - Finish planning for optimized algorithm by working through examples and writing pseudo-code on paper
     - Implement the initial version of OptimizedAnagramFinder using the LetterMap data structure
-- Day 5 [1 hr]
+- Day 5 [3 hr]
     - Make input and anagram-searching case-insensitive in OptimizedAnagramFinder
+    - Start and record the results of the long-execution test
   
 ## Notes and Assumptions About Anagrams
 - The anagram solver will search for anagrams in a case-insensitive manner.
@@ -102,3 +103,16 @@ Finding anagrams for: Exit
 1 anagram found for Exit in 0 ms
 exit
 ```
+
+## Finding Anagrams for the Entire Sample Dictionary
+
+The app can be run on the entire dictionary with the following command: 
+```shell
+$ npm start dictionary-data/dictionary.txt < dictionary-data/dictionary.txt
+```
+
+But before running the command:
+To prevent the word "exit" from causing the app to close, it was capitalized to "Exit".
+The case-insensitivity of the anagram finder prevents this capitalization from changing the results.
+The results of finding all anagrams have been stored in the file "long-execution.out".
+The total execution time of this command was 1hr51m37s.
