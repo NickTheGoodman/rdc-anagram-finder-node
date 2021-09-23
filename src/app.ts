@@ -9,7 +9,6 @@ if (! process.argv[2]) {
 }
 const filename = process.argv[2];
 
-// const finder = new BruteForceAnagramFinder();
 const finder = new OptimizedAnagramFinder();
 finder.loadDictionary(filename);
 finder.processInput();

@@ -21,8 +21,6 @@ export class OptimizedAnagramFinder {
         const dictionaryArray = rawDictionary.split('\n');
 
         this._letterMap = this._loadLetterMapFromDictionary(dictionaryArray);
-        // console.log("DEBUG: _printLetterMapRecursively:");
-        // console.log(this._printLetterMapRecursively("", this._letterMap));
 
         const loadEnd = Date.now();
         const loadDuration = loadEnd - loadStart;
@@ -130,6 +128,8 @@ export class OptimizedAnagramFinder {
 
                 const curCharInBothCases = this._getBothCasesForLetter(curChars[i]);
                 for (const curChar of curCharInBothCases) {
+                    // console.log(`DEBUG: curChar: ${curChar} | nextChars: ${nextChars}`)
+
                     if (curLetterMap[curChar]) {
                         if (nextChars.length > 0) {
                             tupleStack.push([prevChars + curChar, nextChars]);
@@ -162,109 +162,4 @@ export class OptimizedAnagramFinder {
         return [letter.toLowerCase(), letter.toUpperCase()];
     }
 
-
-    private _printLetterMapRecursively(lettersSoFar: string, letterMap: LetterMap) {
-        let words: string[] = [];
-        for (const letter in letterMap) {
-            const { isLastLetter, nextLetters } = letterMap[letter];
-            const hasNextLetters = Object.keys(nextLetters).length > 0;
-            if (isLastLetter) {
-                words.push(lettersSoFar + letter);
-            }
-            if (hasNextLetters) {
-                words = words.concat(this._printLetterMapRecursively(lettersSoFar + letter, nextLetters));
-            }
-        }
-        return words;
-    };
-
-    private _printLetterMapIteratively(firstLetters: LetterMap) {
-        const words = [];
-        const tupleStack: [string, LetterMap][] = [];
-        tupleStack.push(["", firstLetters]);
-        while(tupleStack.length > 0) {
-            const tuple = tupleStack.pop();
-            const lettersSoFar = tuple[0];
-            const letterMap = tuple[1];
-            for (const letter in letterMap) {
-                const { isLastLetter, nextLetters } = letterMap[letter];
-                const hasNextLetters = Object.keys(nextLetters).length > 0;
-                if (isLastLetter) {
-                    words.push(lettersSoFar + letter);
-                }
-                if (hasNextLetters) {
-                    tupleStack.push([lettersSoFar + letter, nextLetters]);
-                }
-            }
-        }
-        return words;
-    }
-
-    public test() {
-        // dictionary:
-        // a, aa, aA, aal, aam, Aa,
-
-        const sampleLetterMap: LetterMap = {
-            'a': {
-                isLastLetter: true,
-                nextLetters: {
-                    'a': {
-                        isLastLetter: true,
-                        nextLetters: {
-                            'l': {
-                                isLastLetter: true,
-                                nextLetters: {},
-                            },
-                            'm': {
-                                isLastLetter: true,
-                                nextLetters: {}
-                            }
-                        },
-                    },
-                    'A': {
-                        isLastLetter: true,
-                        nextLetters: {}
-                    }
-                },
-            },
-            'A': {
-                isLastLetter: false,
-                nextLetters: {
-                    'a': {
-                        isLastLetter: true,
-                        nextLetters: {}
-                    }
-                }
-            }
-        };
-
-        const dictionary = [
-            "a", "aal", "aa", "aam", "aA", "Aa"
-        ];
-
-        const letterMap = this._loadLetterMapFromDictionary(dictionary);
-
-        console.log("printLetterMapRecursively");
-        console.log(this._printLetterMapRecursively("", letterMap));
-
-        console.log("printLetterMapIteratively");
-        console.log(this._printLetterMapIteratively(letterMap));
-
-        console.log("blah");
-
-        const blah: [string, string] = ["A", 'a'];
-        const [blah0, blah1] = blah;
-        console.log(blah);
-        console.log(blah0);
-        console.log(blah1);
-        for (const letter of blah) {
-            console.log(`letter: ${letter}`);
-        }
-
-
-    }
-
-
 }
-
-

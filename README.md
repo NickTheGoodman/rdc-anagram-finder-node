@@ -24,8 +24,8 @@ It was developed in Windows Subsystem for Linux using an Ubuntu 20.04 LTS image.
 - Day 4 [6 hrs]
     - Finish planning for optimized algorithm by working through examples and writing pseudo-code on paper
     - Implement the initial version of OptimizedAnagramFinder using the LetterMap data structure
-- Day 5 []
-    - Make OptimizedAnagramFinder case-insensitive
+- Day 5 [1 hr]
+    - Make input and anagram-searching case-insensitive in OptimizedAnagramFinder
   
 ## Notes and Assumptions About Anagrams
 - The anagram solver will search for anagrams in a case-insensitive manner.
@@ -44,7 +44,7 @@ $ npm install
 ```shell
 $ npm run build
 
-> rdc-anagram-finder-node@1.0.0 build
+> rdc-anagram-finder-node@1.1.0 build
 > tsc
 
 ```
@@ -52,12 +52,12 @@ $ npm run build
 ```shell
 $ npm start dictionary-data/dictionary.txt
 
-> rdc-anagram-finder-node@1.0.0 start
+> rdc-anagram-finder-node@1.1.0 start
 > node dist/src/app.js "dictionary-data/dictionary.txt"
 
-Welcome to the Anagram Finder v1: Brute Force
+Welcome to the Anagram Finder v1.1: Optimized
 ---------------------------------------------
-Dictionary loaded in 206 ms
+Dictionary loaded in 234 ms
 
 Enter a word. >
 ```
@@ -74,9 +74,9 @@ post,spot,stop,tops
 Enter another word. > maca roni
 Bad input.
 
-Enter another word. >     macaroni
+Enter another word. >    macaroni
 Finding anagrams for: macaroni
-3 anagrams found for macaroni in 19 ms
+3 anagrams found for macaroni in 9 ms
 armonica,macaroni,marocain
 
 Enter another word. > a
@@ -99,6 +99,6 @@ Exiting.
 ```shell
 Enter another word. > Exit
 Finding anagrams for: Exit
-1 anagram found for Exit in 0ms
+1 anagram found for Exit in 0 ms
 exit
 ```
